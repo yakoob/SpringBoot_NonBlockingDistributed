@@ -6,7 +6,6 @@ import akka.actor.Address
 import akka.actor.Props
 import akka.cluster.Cluster
 import akka.cluster.ClusterEvent
-
 import com.typesafe.config.ConfigFactory
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Service

@@ -12,7 +12,13 @@ class TestJob implements Job {
 
         AkkaService akkaService = Application.context?.getBean(AkkaService.class)
         ServerService serverService = Application.context?.getBean(ServerService.class)
-        akkaService?.homeManager?.tell(serverService?.listActive()?.toListString(), ActorRef.noSender())
+
+        // do call to db on separate thread and subscribe to the result so that we can push into the actor system
+        rx.Observable.just(serverService?.listActive()?.toListString())
+            .subscribe({serverServiceResults ->
+                // once serverService has finished its work
+                akkaService?.homeManager?.tell(serverServiceResults, ActorRef.noSender())
+            })
         println " "
 
     }
