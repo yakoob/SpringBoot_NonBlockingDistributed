@@ -65,14 +65,14 @@ class AkkaService {
     private static final ActorRef ACTOR_NO_SENDER = ActorRef.noSender()
 
     ActorRef clusterListener
-    private ActorRef homeManager
+    ActorRef homeManager
 
     @Autowired
     ServerService serverService
 
     void init() {
         // create actor system
-        system = ActorSystem.create("Halloween")
+        system = ActorSystem.create("KooberSystem")
         log.info "Initialized Akka ActorSystem $system"
         actorSetup()
         def cluster = Cluster.get(system)
@@ -153,10 +153,6 @@ class AkkaService {
         system?.shutdown()
         system = null
         log.warning("destroying Akka ActorSystem: done.")
-    }
-
-    public getHomeManager(){
-        return this.homeManager
     }
 
 }
