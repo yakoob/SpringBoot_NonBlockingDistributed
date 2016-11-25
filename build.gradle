@@ -1,0 +1,45 @@
+buildscript {
+	ext {
+		springBootVersion = '1.4.1.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'groovy'
+apply plugin: 'spring-boot'
+
+jar {
+	baseName = 'com.yakoobahmad'
+	version = '0.0.1-SNAPSHOT'
+}
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile 'org.springframework.boot:spring-boot-starter-web'
+	compile 'org.springframework.boot:spring-boot-devtools'
+	compile 'org.springframework:spring-tx' // transaction support required by quartz
+	compile 'org.springframework:spring-context-support'  // setup quartz beans
+	compile 'org.codehaus.groovy:groovy-all'
+	compile 'org.grails:gorm-hibernate5-spring-boot:6.0.3.RELEASE'
+	compile 'org.grails:grails-datastore-gorm-hibernate5:6.0.3.RELEASE'
+	runtime 'com.h2database:h2:1.4.192'
+	runtime "mysql:mysql-connector-java"
+	compile group: 'com.google.code.gson', name: 'gson', version: '2.7'
+	compile 'org.quartz-scheduler:quartz:2.2.2'
+
+	compile 'com.typesafe.akka:akka-actor_2.11:2.4.14'
+	compile 'com.typesafe.akka:akka-cluster_2.11:2.4.14'
+	compile 'com.typesafe.akka:akka-contrib_2.11:2.4.14'
+	compile 'com.typesafe.akka:akka-remote_2.11:2.4.14'
+
+}

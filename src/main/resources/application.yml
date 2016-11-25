@@ -1,0 +1,68 @@
+---
+hibernate:
+    transaction:
+        flush_before_completion: true
+    connection:
+        autocommit: true
+    cache:
+        queries: false
+        use_second_level_cache: false
+        use_query_cache: false
+        region.factory_class: org.hibernate.cache.ehcache.SingletonEhCacheRegionFactory
+
+dataSources:
+    dataSource:
+      pooled: true
+      driverClassName: com.mysql.jdbc.Driver
+      dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+      host: localhost
+      username: root
+      password:
+      dbCreate: update
+      url: jdbc:mysql://127.0.0.1:3306/quartz
+      properties:
+          jmxEnabled: true
+          initialSize: 5
+          maxActive: 50
+          minIdle: 5
+          maxIdle: 25
+          maxWait: 10000
+          maxAge: 600000
+          timeBetweenEvictionRunsMillis: 5000
+          minEvictableIdleTimeMillis: 60000
+          validationQuery: SELECT 1
+          validationQueryTimeout: 3
+          validationInterval: 15000
+          testOnBorrow: true
+          testWhileIdle: true
+          testOnReturn: false
+          jdbcInterceptors: ConnectionState
+          defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
+
+    replicate:
+        pooled: true
+        driverClassName: com.mysql.jdbc.Driver
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+        host: localhost
+        dbCreate: none
+        url: jdbc:mysql://localhost:3306/test
+        username: root
+        password:
+        properties:
+            jmxEnabled: true
+            initialSize: 5
+            maxActive: 50
+            minIdle: 5
+            maxIdle: 25
+            maxWait: 10000
+            maxAge: 600000
+            timeBetweenEvictionRunsMillis: 5000
+            minEvictableIdleTimeMillis: 60000
+            validationQuery: SELECT 1
+            validationQueryTimeout: 3
+            validationInterval: 15000
+            testOnBorrow: true
+            testWhileIdle: true
+            testOnReturn: false
+            jdbcInterceptors: ConnectionState
+            defaultTransactionIsolation: 2 # TRANSACTION_READ_COMMITTED
